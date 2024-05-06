@@ -4,6 +4,10 @@ $email = $_POST['email'];
 $password = $_POST['password'];
 $username = $_POST['username'];
 
+$dir = '../../images/avatar';
+$files = array_diff(scandir($dir), array('.', '..'));
+$avatar = $dir . '/' . $files[array_rand($files)];
+
 
 
 
@@ -33,11 +37,12 @@ if (!empty($username) && !empty($password) && !empty($email)) {
     if (empty($users)) {
         $connectDatabase = new PDO("mysql:host=db;dbname=wordpress", "root", "admin");
         // prepare request
-        $request = $connectDatabase->prepare("INSERT INTO users (username, password, email) VALUES (:username, :password, :email)");
+        $request = $connectDatabase->prepare("INSERT INTO users (username, password, email, user_image) VALUES (:username, :password, :email, :user_image)");
         // bind params,
         $request->bindParam(':email', $email);
         $request->bindParam(':password', $hash_password);
         $request->bindParam(':username', $username);
+        $request->bindParam(':user_image', $avatar);
         // execute request
         $request->execute();
         header('Location: ../../index.php.php?success=Le user a bien été ajouté');

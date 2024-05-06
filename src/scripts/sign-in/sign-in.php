@@ -30,7 +30,7 @@ if (empty($users || !$isValidPassword)) {
     die(); // stop the script
 
 } elseif (!empty($users && $isValidPassword)) {
-    header('Location: ../../index.php?success=Le user a bien été connecté');
+    header('Location: ../../search_party.php?success=Le user a bien été connecté');
     session_start();
 
     $_SESSION['id'] = $users['id'];

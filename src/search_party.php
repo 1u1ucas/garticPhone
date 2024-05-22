@@ -22,16 +22,16 @@ $games = $request->fetchAll(PDO::FETCH_ASSOC);
 
     <div class="row">
         <?php foreach ($games as $game): ?>
-        <div class="col-4">
-            <div class="card">
-                <form action="scripts/join-game/join-game.php" class="card-body" method="POST">
-                    <h5 class="card-title"><?php echo $game['name']; ?></h5>
-                    <p class="card-text">Number of players: <?php echo $game['playerNumber']; ?></p>
-                    <input type="hidden" name="game_id" value="<?php echo $game['id']; ?>">
-                    <button type="submit" value="envoyer" class="btn btn-primary">Go to the game</button>
-                </form>
+            <div class="col-4">
+                <div class="card">
+                    <form action="scripts/join-game/join-game.php" class="card-body" method="POST">
+                        <h5 class="card-title"><?php echo $game['name']; ?></h5>
+                        <p class="card-text">Number of players: <?php echo $game['playerNumber']; ?></p>
+                        <input type="hidden" name="game_id" value="<?php echo $game['id']; ?>">
+                        <button type="submit" value="envoyer" class="btn btn-primary">Go to the game</button>
+                    </form>
+                </div>
             </div>
-        </div>
         <?php endforeach; ?>
     </div>
 </div>

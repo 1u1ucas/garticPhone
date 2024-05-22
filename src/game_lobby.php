@@ -32,17 +32,20 @@ $game = $request->fetch(PDO::FETCH_ASSOC);
         <?php
         $request = $connectDatabase->prepare("SELECT * FROM users WHERE id = :user_id");
 
-        foreach ($users as $user) {
+        foreach ($users as $user):
             $request->bindParam(':user_id', $user['user_id']);
 
             $request->execute();
 
             $user_info = $request->fetch(PDO::FETCH_ASSOC);
+            ?>
+        <div class="col-2 gap-2 align-items-center">
+            <p class=""> <?php echo htmlspecialchars($user_info['username']) ?> </p>
+            <img style="width:100px" src="<?php echo $user_info['user_image'] ?>" alt="">
+        </div>
 
-            echo '<p class="col-1">' . htmlspecialchars($user_info['username']) . '</p>';
-        }
-        ?>
 
+        <?php endforeach; ?>
 
     </div>
 

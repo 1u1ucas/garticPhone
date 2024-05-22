@@ -45,7 +45,7 @@ if (!empty($username) && !empty($password) && !empty($email)) {
         $request->bindParam(':user_image', $avatar);
         // execute request
         $request->execute();
-        header('Location: ../../index.php.php?success=Le user a bien été ajouté');
+        header('Location: ../../index.php?success=Le user a bien été ajouté');
 
     } elseif (!empty($users)) {
         header("Location: ../../sign_up.php?error=L'utilisateur existe déjà");
